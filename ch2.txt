@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>
+Anmol's Interest Calculator
+</title>
+</head>
+
+<body>
+
+<h1>Anmol's Interest Calculator</h1>
+
+<h2>Simple Interest Calculator</h2>
+<p>AV<sub>t</sub> = PV<sub>0</sub>(1+it)</p>
+<p> The accumulated value is: <input type="number" name="av" step="0.0001"></p>
+<p> The present value is: <input type="number" name="pv" step="0.0001"></p>
+<p> The interest rate is is: <input type="number" name="i" step="0.0001"></p>
+<p> The time is: <input type="number" name="t" step="0.0001"></p>
+
+<p>
+<button onclick="simpleInterest()">Calculate!</button></p>
+
+<p><var id="finalVariable1"></var></p>
+
+
+<h2>Simple Discount Calculator</h2>
+<p>PV<sub>0</sub> = AV<sub>t</sub>(1-dt)</p>
+<p> The accumulated value is: <input type="number" name="av2" step="0.0001"></p>
+<p> The present value is: <input type="number" name="pv2" step="0.0001"></p>
+<p> The discount rate is is: <input type="number" name="d" step="0.0001"></p>                
+<p> The time is: <input type="number" name="t2" step="0.0001"></p>
+</body>
+
+<p>
+<button onclick="simpleDiscount()">Calculate!</button></p>
+
+<p><var id="finalVariable2"></var></p>
+
+
+<script>
+
+function scrapeData(name, isButton){ 
+	// name is a string by which to find element, isButton is boolean for radio button
+	var scrapedData = document.getElementsByName(name);
+	
+	if (isButton){
+		for (i=0; i < scrapedData.length; i++){
+			if (scrapedData[i].checked){
+				return scrapedData[i].value;
+			}
+		}
+	}
+	
+	else {
+		return scrapedData[0].value;
+	}
+}
+
+function elementCount(arr, element){
+	return arr.filter((currentElement)=> currentElement == element).length;
+}
+
+function simpleInterest(){
+
+	var av = scrapeData("av", false);
+	var pv = scrapeData("pv", false);
+	var i = scrapeData("i", false);
+	var t = scrapeData("t", false);
+	var array = [av, pv, i, t];	
+
+	if (elementCount(array, "") != 1){
+		document.getElementById("finalVariable1").innerHTML  = "Please leave exactly one variable blank.";
+	}
+	else if (av == ""){
+		document.getElementById("finalVariable1").innerHTML  =  "The blank variable is " + pv*(1+i*t);
+	}
+	else if (pv == ""){
+		document.getElementById("finalVariable1").innerHTML  =  "The blank variable is " + av / (1+i*t);
+	}
+	else if (i == ""){
+		document.getElementById("finalVariable1").innerHTML  =  "The blank variable is " + ((av/pv)-1)*(1/t);
+	}
+	else{
+		document.getElementById("finalVariable1").innerHTML  =  "The blank variable is " + ((av/pv)-1)*(1/i);
+	}
+}
+
+function simpleDiscount(){
+
+	var av = scrapeData("av2", false);
+	var pv = scrapeData("pv2", false);
+	var d = scrapeData("d", false);
+	var t = scrapeData("t2", false);
+	var array = [av, pv, d, t];	
+
+	if (elementCount(array, "") != 1){
+		document.getElementById("finalVariable2").innerHTML  = "Please leave exactly one variable blank.";
+	}
+	else if (av == ""){
+		document.getElementById("finalVariable2").innerHTML  =  "The blank variable is " + pv / (1-d*t);
+	}
+	else if (pv == ""){
+		document.getElementById("finalVariable2").innerHTML  =  "The blank variable is " + av * (1-d*t);
+	}
+	else if (d == ""){
+		document.getElementById("finalVariable2").innerHTML  =  "The blank variable is " + (1-(av/pv))*(1/t);
+	}
+	else{
+		document.getElementById("finalVariable2").innerHTML  =  "The blank variable is " + (1-(av/pv))*(1/d);
+	}
+}
+
+</script>
+
+</html>

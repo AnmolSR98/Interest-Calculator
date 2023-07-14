@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>
+Anmol's Interest Calculator
+</title>
+</head>
+
+<body>
+
+<h1>Anmol's Interest Calculator</h1>
+
+<h2>Compound Interest Calculator</h2>
+<p>AV<sub>t</sub> = PV<sub>0</sub>(1+i)<sup>t</sup></p>
+<p> The accumulated value is: <input type="number" name="av" step="0.0001"></p>
+<p> The present value is: <input type="number" name="pv" step="0.0001"></p>
+<p> The interest rate is: <input type="number" name="i" step="0.0001"></p>
+<p> The time is: <input type="number" name="t" step="0.0001"></p>
+
+<p>
+<button onclick="compoundInterest()">Calculate!</button></p>
+
+<p><var id="finalVariable1"></var></p>
+
+
+<h2>Compound Discount Calculator</h2>
+<p>PV<sub>0</sub> = AV<sub>t</sub>(1-d)<sup>t</sup></p>
+<p> The accumulated value is: <input type="number" name="av2" step="0.0001"></p>
+<p> The present value is: <input type="number" name="pv2" step="0.0001"></p>
+<p> The discount rate is: <input type="number" name="d" step="0.0001"></p>                
+<p> The time is: <input type="number" name="t2" step="0.0001"></p>
+</body>
+
+<p>
+<button onclick="compoundDiscount()">Calculate!</button></p>
+
+<p><var id="finalVariable2"></var></p>
+
+
+<script>
+
+function scrapeData(name, isButton){ 
+	// name is a string by which to find element, isButton is boolean for radio button
+	var scrapedData = document.getElementsByName(name);
+	
+	if (isButton){
+		for (i=0; i < scrapedData.length; i++){
+			if (scrapedData[i].checked){
+				return scrapedData[i].value;
+			}
+		}
+	}
+	
+	else {
+		return scrapedData[0].value;
+	}
+}
+
+function elementCount(arr, element){
+	return arr.filter((currentElement)=> currentElement == element).length;
+}
+
+function compoundInterest(){
+
+	var av = scrapeData("av", false);
+	var pv = scrapeData("pv", false);
+	var i = scrapeData("i", false);
+	var t = scrapeData("t", false);
+	var array = [av, pv, i, t];	
+
+	if (elementCount(array, "") != 1){
+		document.getElementById("finalVariable1").innerHTML  = "Please leave exactly one variable blank.";
+	}
+	else if (av == ""){
+		var [pv, i, t] = [Number(pv), Number(i), Number(t)];
+		document.getElementById("finalVariable1").innerHTML  =  "The blank variable is " + pv*((1 + i)**t);
+	}
+	else if (pv == ""){
+		var [av, i, t] = [Number(av), Number(i), Number(t)];
+		document.getElementById("finalVariable1").innerHTML  =  "The blank variable is " + av / ((1 + i)**t);
+	}
+	else if (i == ""){
+		var [av, pv, t] = [Number(av), Number(pv), Number(t)];
+		document.getElementById("finalVariable1").innerHTML  =  "The blank variable is " + ( ( (av / pv)**(1/t) ) - 1 );
+	}
+	else{
+		var [av, pv, i] = [Number(av), Number(pv), Number(i)];
+		document.getElementById("finalVariable1").innerHTML  =  "The blank variable is " + ( Math.log(av / pv) / Math.log(1 + i) );
+	}
+}
+
+function compoundDiscount(){
+
+	var av = scrapeData("av2", false);
+	var pv = scrapeData("pv2", false);
+	var d = scrapeData("d", false);
+	var t = scrapeData("t2", false);
+	var array = [av, pv, d, t];	
+
+	if (elementCount(array, "") != 1){
+		document.getElementById("finalVariable2").innerHTML  = "Please leave exactly one variable blank.";
+	}
+	else if (av == ""){
+		var [pv, d, t] = [Number(pv), Number(d), Number(t)];
+		document.getElementById("finalVariable2").innerHTML  =  "The blank variable is " + pv / ((1 - d)**t);
+	}
+	else if (pv == ""){
+		var [av, d, t] = [Number(av), Number(d), Number(t)];
+		document.getElementById("finalVariable2").innerHTML  =  "The blank variable is " + av * ((1 - d)**t);
+	}
+	else if (d == ""){
+		var [pv, av, t] = [Number(pv), Number(av), Number(t)];
+		document.getElementById("finalVariable2").innerHTML  =  "The blank variable is " + 1 - ( (pv / av)**(1/t) );
+	}
+	else{
+		var [pv, d, av] = [Number(pv), Number(d), Number(av)];
+		document.getElementById("finalVariable2").innerHTML  =  "The blank variable is " + Math.log(pv / av) / Math.log(1 - d);
+	}
+}
+
+</script>
+
+</html>
