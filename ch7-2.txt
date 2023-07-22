@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>
+Anmol's Interest Calculator
+</title>
+</head>
+
+<body>
+<h1>Annuity Payable Continuously</h1>
+<p>a<sub>n</sub>= (1-e<sup>-rn</sup>)/r,    s<sub>n</sub>= (e<sup>rn</sup>-1)/r</p>
+<p>Accumulated value is: <input type="number" name="av" step="0.0001"></p>
+<p>Present value is: <input type="number" name="pv" step="0.0001"></p>
+<p>Force of interest rate is: <input type="number" name="r" step="0.0001"></p>
+<p>Number of terms is: <input type="number" name="n" step="0.0001"></p>
+<p><button onclick="annuityForce()">Calculate!</button></p>
+<p><var id="finalVariable1"></var></p>
+</body>
+
+<script>
+
+function scrapeData(name, isButton){ 
+	// name is a string by which to find element, isButton is boolean for radio button
+	var scrapedData = document.getElementsByName(name);
+	
+	if (isButton){
+		for (i=0; i < scrapedData.length; i++){
+			if (scrapedData[i].checked){
+				return scrapedData[i].value;
+			}
+		}
+	}
+	
+	else {
+		return scrapedData[0].value;
+	}
+}
+
+function elementCount(arr, element){
+	return arr.filter((currentElement)=> currentElement == element).length;
+}
+
+function annuityForce(){
+	
+	var av = scrapeData("av", false);
+	var pv = scrapeData("pv", false);
+	var r = scrapeData("r", false);
+	var n = scrapeData("n", false);
+	var goodConditions = [ (av != "" && pv != ""   && r == ""  && n != ""),
+					      (av != "" && pv != ""   && r != ""   && n == ""),
+					      (						r != "" && n != "")];
+
+	if (goodConditions[0]) {
+		var [av, pv, n] = [Number(av), Number(pv), Number(n)];
+		document.getElementById("finalVariable1").innerHTML = "The blank variable is " +  (1 / n) * Math.log(av / pv);
+	}
+	else if (goodConditions[1]) {
+		var [av, pv, r] = [Number(av), Number(pv), Number(r)];
+		document.getElementById("finalVariable1").innerHTML = "The blank variable is " + (1 / r) * Math.log(av / pv);
+	}
+	else if (goodConditions[2]) {
+		var [r, n] = [Number(r), Number(n)];
+		document.getElementById("finalVariable1").innerHTML  = "The blank variables are  " + ( (1 - Math.E**(-1*r*n)) / r ) + " and " + (Math.E**(r*n)) * ( (1 - Math.E**(-1*r*n)) / r ); 
+	}
+	else {
+		document.getElementById("finalVariable1").innerHTML = "Please enter a valid combination of inputs"; 
+	}
+
+}
+
+</script>
+</html>
