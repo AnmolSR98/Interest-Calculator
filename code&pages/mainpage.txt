@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Anmol's Interest Calculator</title>
+<link rel="stylesheet" href="../styles/mainstyles.css">
+</head>
+
+ <!-- Will update the links later when the thing is actually working properly -->
+
+<body>
+<h1>Anmol's Interest Calculator</h1>
+<p><a href="ch2.html">Simple Interest and Discount Rates</a></p>
+<p><a href="ch3.html">Compound Interest and Discount Rates</a></p>
+<p><a href="ch3-2.html">Nominal Interest and Discount Rates</a></p>
+<p><a href="ch4.html">Force of Interest</a></p>
+<p><a href="ch6.html">Annuity Immediate and Annuity Due</a></p>
+</body>
+</html>

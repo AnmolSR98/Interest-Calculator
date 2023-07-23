@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>
+Anmol's Interest Calculator
+</title>
+<link rel="stylesheet" href="../styles/chapterstyles.css">
+</head>
+
+<body>
+
+<h1>Anmol's Interest Calculator</h1>
+
+<h2> Increasing Annuity Payable Continuously</h2>
+<p>(Ia)<sub>n</sub>= (a_due<sub>n</sub>-nv<sup>n</sup>)/r, 	(Is)<sub>n</sub>= (s_due<sub>n</sub>-n)/i, v = e<sup>r</sup></p>
+<p>Force of interest: <input type="number" name="r" step="0.0001"></p>
+<p>Number of terms is: <input type="number" name="n" step="0.0001"></p>
+<p><button onclick="increasingAnnuityCont()">Calculate!</button></p>
+<p><var id="finalVariable1"></var></p>
+
+<script>
+
+function scrapeData(name, isButton){ 
+	// name is a string by which to find element, isButton is boolean for radio button
+	var scrapedData = document.getElementsByName(name);
+	
+	if (isButton){
+		for (i=0; i < scrapedData.length; i++){
+			if (scrapedData[i].checked){
+				return scrapedData[i].value;
+			}
+		}
+	}
+	
+	else {
+		return scrapedData[0].value;
+	}
+}
+
+function elementCount(arr, element){
+	return arr.filter((currentElement)=> currentElement == element).length;
+}
+
+function increasingAnnuityCont(){
+	
+	var r = scrapeData("r", false);
+	var n = scrapeData("n", false);
+	var goodConditions = [(r != "" && n != "")];
+
+	if (goodConditions[0]) {
+		var [r, n] = [Number(r), Number(n)];
+		var i = Math.E**(r) - 1;
+		var v = (1 + i)**(-1);
+		var a_due = (1 - v**(n)) / i;
+		var s_due = (v**(-1*n) - 1) / i;
+		document.getElementById("finalVariable1").innerHTML = "The blank variables are " +  (a_due - n*(v**(n))) / r + " and " + (s_due - n) / r;
+	}
+	else {
+		document.getElementById("finalVariable1").innerHTML = "Please enter a valid combination of inputs"; 
+	}
+
+}
+
+
+</script>
+</html>

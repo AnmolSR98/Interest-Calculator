@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>
+Anmol's Interest Calculator
+</title>
+<link rel="stylesheet" href="../styles/chapterstyles.css">
+</head>
+
+<body>
+
+<h1>Anmol's Interest Calculator</h1>
+
+<h2> Increasing Annuity Immediate Payable Mthly</h2>
+<p>(Ia)<sub>n</sub>= (a_due<sub>n</sub>-nv<sup>n</sup>)/i, 	(Is)<sub>n</sub>= (s_due<sub>n</sub>-n)/i, v = (1 + (i/m))<sup>-m</sup></p>
+<p>Nominal interest rate is: <input type="number" name="i" step="0.0001"></p>
+<p>Number of times compounded per payment period: <input type="number" name="m" step="0.0001"></p>
+<p>Number of terms is: <input type="number" name="n" step="0.0001"></p>
+<p><button onclick="increasingAnnuityImmediateMthly()">Calculate!</button></p>
+<p><var id="finalVariable1"></var></p>
+
+<h2>Increasing Annuity Due Payable Mthly</h2>
+<p>(Ia)<sub>n</sub>= (a_due<sub>n</sub>-nv<sup>n</sup>)/d, 	(Is)<sub>n</sub>= (s_due<sub>n</sub>-n)/d,  v = (1 + (i/m))<sup>-m</sup></p>
+<p>Nominal discount rate is: <input type="number" name="i2" step="0.0001"></p>
+<p>Number of times compounded per payment period: <input type="number" name="m2" step="0.0001"></p>
+<p>Number of terms is: <input type="number" name="n2" step="0.0001"></p>
+<p><button onclick="increasingAnnuityDueMthly()">Calculate!</button></p>
+<p><var id="finalVariable2"></var></p>
+</body>
+
+<script>
+
+function scrapeData(name, isButton){ 
+	// name is a string by which to find element, isButton is boolean for radio button
+	var scrapedData = document.getElementsByName(name);
+	
+	if (isButton){
+		for (i=0; i < scrapedData.length; i++){
+			if (scrapedData[i].checked){
+				return scrapedData[i].value;
+			}
+		}
+	}
+	
+	else {
+		return scrapedData[0].value;
+	}
+}
+
+function elementCount(arr, element){
+	return arr.filter((currentElement)=> currentElement == element).length;
+}
+
+function increasingAnnuityImmediateMthly(){
+	
+	var i = scrapeData("i", false);
+	var m = scrapeData("m", false);
+	var n = scrapeData("n", false);
+	var goodConditions = [(i != "" && n != "")];
+
+	if (goodConditions[0]) {
+		var [i, n] = [Number(i), Number(n)];
+		var v = (1 + (i / m))**(-1*m);
+		var a_due = (1 - v**(n)) / i;
+		var s_due = (v**(-1*n) - 1) / i;
+		document.getElementById("finalVariable1").innerHTML = "The blank variables are " +  (a_due - n*(v**(n))) / i + " and " + (s_due - n) / i;
+	}
+	else {
+		document.getElementById("finalVariable1").innerHTML = "Please enter a valid combination of inputs"; 
+	}
+
+}
+
+function increasingAnnuityDueMthly() {
+
+	var i = scrapeData("i2", false);
+	var m = scrapeData("m2", false);
+	var n = scrapeData("n2", false);
+	var goodConditions = [(i != "" && n != "")];
+
+	if (goodConditions[0]) {
+		var [i, n] = [Number(i), Number(n)];
+		var v = (1 + (i / m))**(-1*m);
+		var d = (i) / (1 + (i / m));
+		var a_due = (1 - v**(n)) / i;
+		var s_due = (v**(-1*n) - 1) / i;
+		document.getElementById("finalVariable2").innerHTML = "The blank variables are " +  (a_due - n*(v**(n))) / d + " and " + (s_due - n) / d;
+	}
+	else {
+		document.getElementById("finalVariable2").innerHTML = "Please enter a valid combination of inputs"; 
+	}
+
+}
+
+</script>
+</html>
