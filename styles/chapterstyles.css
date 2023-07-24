@@ -1,0 +1,18 @@
+body {
+font-family: "Arial";
+background-image: url(raw_background.jpeg);
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed; 
+background-position: bottom;
+background-color: #464646;
+}
+
+section {
+background-color: #FFFFFF;
+position: relative;
+left: 300px;
+width: 70%;
+border: 20px solid #FFFFFF;
+border-radius: 25px;
+}
