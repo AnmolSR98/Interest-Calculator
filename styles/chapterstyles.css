@@ -8,11 +8,59 @@ background-position: bottom;
 background-color: #464646;
 }
 
-section {
-background-color: #FFFFFF;
-position: relative;
-left: 300px;
-width: 70%;
-border: 20px solid #FFFFFF;
+h1 {
+color: #002E63; 
+}
+
+h2{
+color: #002E63; 
+}
+
+ul {
+list-style-type: none;
+}
+
+li a {
+display: block;
+color: #000;
+text-decoration: none;
+height: 50px;
+width: 100%;
+}
+
+li a:hover {
+background-color: #002E63; 
+color: white;
+}
+
+#logo {
+float: top;
+width: 25%;
+border: 20px;
 border-radius: 25px;
+opacity: 1;
+margin: 25px;
+margin-left: 50px;
+}
+
+#menu {
+float: left;
+background-color: #FAF9F6;
+margin: 10px;
+width: 25%;
+border: 0px;
+border-radius: 25px;
+opacity: 0.9;
+}
+
+#calculatorContent {
+float: left;
+background-color: #FAF9F6;
+margin: 10px;
+width: 35%;
+border: 20px solid #FAF9F6;
+border-top: 1px solid #FAF9F6;
+border-bottom: 1px solid #FAF9F6;
+border-radius: 25px;
+opacity: 0.9;
 }
