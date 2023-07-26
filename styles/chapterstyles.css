@@ -1,5 +1,5 @@
 body {
-font-family: "Arial";
+font-family: "EB Garamond";
 background-image: url(raw_background.jpeg);
 background-size: cover;
 background-repeat: no-repeat;
@@ -9,27 +9,34 @@ background-color: #464646;
 }
 
 h1 {
+font-size:  30px;
 color: #002E63; 
+font-weight: 900;
 }
 
 h2{
 color: #002E63; 
+font-weight: bold;
 }
 
 ul {
 list-style-type: none;
+height: 600px;
 }
 
 li a {
 display: block;
 color: #000;
 text-decoration: none;
-height: 50px;
+height: 9%;
+margin: 11%;
 width: 100%;
+text-align: left;
 }
 
 li a:hover {
 background-color: #002E63; 
+height: 20%;
 color: white;
 }
 
@@ -48,6 +55,7 @@ float: left;
 background-color: #FAF9F6;
 margin: 10px;
 width: 25%;
+height: 600px;
 border: 0px;
 border-radius: 25px;
 opacity: 0.9;
@@ -63,4 +71,11 @@ border-top: 1px solid #FAF9F6;
 border-bottom: 1px solid #FAF9F6;
 border-radius: 25px;
 opacity: 0.9;
+}
+
+footer {
+float: right;
+margin-top: 100px;
+color: #002E63; 
+font-weight: bold;
 }
