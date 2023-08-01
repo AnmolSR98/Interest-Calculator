@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>
+Anmol's Interest Calculator
+</title>
+</head>
+
+<link href='https://fonts.googleapis.com/css?family=EB Garamond' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+<link rel="stylesheet" href="../styles/chapterstyles.css">
+</head>
+
+<body>
+
+<section id="logo">
+<h1>Anmol's Interest Calculator</h1>
+</section>
+
+<section id="menu">
+<p><a href="mainpage.html">Homepage</a></p>
+<p><a href="ch2.html">Simple Interest and Discount</a></p>
+<p><a href="ch3-1.html">Compound Interest and Discount</a></p>
+<p><a href="ch3-2.html">Compound Interest and Discount Payable M-thly</a></p>
+<p><a href="ch4.html">Force of Interest</a></p>
+<p><a href="ch6.html">Annuity-Immediate/Due</a></p>
+<p><a href="ch7-1.html">Annuity-Immediate/Due Payable M-thly</a></p>
+<p><a href="ch7-2.html">Annuity Payable Continuously</a></p>
+<p><a href="ch8-1.html">Increasing Annuity Immediate/Due</a></p>
+<p><a href="ch8-2.html">Increasing Annuity Immediate/Due Payable M-thly</a></p>
+<p><a href="ch8-3.html">Increasing Annuity Payable Continuously </a></p>
+</section>
+
+<section id="calculatorContent">
+<h2>Force of Interest</h2>
+<p>AV<sub>t</sub>=PV<sub>0</sub>e<sup>rt</sup></p>
+<p>The accumulated value is: <input type="number" name="av" step="0.0001"></p>
+<p>The present value is: <input type="number" name="pv" step="0.0001"></p>
+<p>The force of interest is: <input type="number" name="r" step="0.0001"></p>
+<p>The time is: <input type="number" name="t" step="0.0001"></p>
+<p><button onclick="forceOfInterest()">Calculate!</button></p>
+<p><var id="finalVariable"></var></p>
+
+</body>
+</section>
+
+<script>
+
+function scrapeData(name, isButton){ 
+	// name is a string by which to find element, isButton is boolean for radio button
+	var scrapedData = document.getElementsByName(name);
+	
+	if (isButton){
+		for (i=0; i < scrapedData.length; i++){
+			if (scrapedData[i].checked){
+				return scrapedData[i].value;
+			}
+		}
+	}
+	
+	else {
+		return scrapedData[0].value;
+	}
+}
+
+function elementCount(arr, element){
+	return arr.filter((currentElement)=> currentElement == element).length;
+}
+
+function forceOfInterest(){
+
+	av = scrapeData("av", false);
+	pv = scrapeData("pv", false);
+	r = scrapeData("r", false);
+	t = scrapeData("t", false);
+	var checkArray = [av, pv, r, t];
+
+	if (elementCount(checkArray, "") != 1) {
+		document.getElementById("finalVariable").innerHTML = "Please leave exactly one variable blank.";
+	} 
+	else if (av == ""){
+		var [pv, r, t] = [Number(pv), Number(r), Number(t)];
+		document.getElementById("finalVariable").innerHTML = "The accumulated value is: " + pv*(Math.E**(r*t));
+	}
+	else if (pv == ""){
+		var [av, r, t] = [Number(av), Number(r), Number(t)];
+		document.getElementById("finalVariable").innerHTML = "The present value is: " + av*(Math.E**(-1*r*t));
+	}
+	else if (r == ""){
+		var [av, pv, t] = [Number(av), Number(pv), Number(t)];
+		document.getElementById("finalVariable").innerHTML = "The force of interest is: " + (1 / t)*(Math.log(av / pv));
+	}
+	else {
+		var [av, pv, r] = [Number(av), Number(pv), Number(r)];
+		document.getElementById("finalVariable").innerHTML = "The time is: " + (1 / r)*(Math.log(av / pv));
+	}
+	
+
+}
+
+</script>
+</html>

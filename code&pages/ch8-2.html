@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>
+Anmol's Interest Calculator
+</title>
+<link href='https://fonts.googleapis.com/css?family=EB Garamond' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+<link rel="stylesheet" href="../styles/chapterstyles.css">
+</head>
+
+<body>
+
+<section id="logo">
+<h1>Anmol's Interest Calculator</h1>
+</section>
+
+<section id="menu">
+<p><a href="mainpage.html">Homepage</a></p>
+<p><a href="ch2.html">Simple Interest and Discount</a></p>
+<p><a href="ch3-1.html">Compound Interest and Discount</a></p>
+<p><a href="ch3-2.html">Compound Interest and Discount Payable M-thly</a></p>
+<p><a href="ch4.html">Force of Interest</a></p>
+<p><a href="ch6.html">Annuity-Immediate/Due</a></p>
+<p><a href="ch7-1.html">Annuity-Immediate/Due Payable M-thly</a></p>
+<p><a href="ch7-2.html">Annuity Payable Continuously</a></p>
+<p><a href="ch8-1.html">Increasing Annuity Immediate/Due</a></p>
+<p><a href="ch8-2.html">Increasing Annuity Immediate/Due Payable M-thly</a></p>
+<p><a href="ch8-3.html">Increasing Annuity Payable Continuously </a></p>
+</section>
+
+<section id="calculatorContent">
+<h2> Increasing Annuity Immediate Payable Mthly</h2>
+<p>(Ia)<sub>n</sub>= (a_due<sub>n</sub>-nv<sup>n</sup>)/i, 	(Is)<sub>n</sub>= (s_due<sub>n</sub>-n)/i, v = (1 + (i/m))<sup>-m</sup></p>
+<p>The nominal interest rate is: <input type="number" name="i" step="0.0001"></p>
+<p>The number of times compounded per payment period: <input type="number" name="m" step="0.0001"></p>
+<p>The number of terms is: <input type="number" name="n" step="0.0001"></p>
+<p><button onclick="increasingAnnuityImmediateMthly()">Calculate!</button></p>
+<p><var id="finalVariable1"></var></p>
+
+<h2>Increasing Annuity Due Payable Mthly</h2>
+<p>(Ia)<sub>n</sub>= (a_due<sub>n</sub>-nv<sup>n</sup>)/d, 	(Is)<sub>n</sub>= (s_due<sub>n</sub>-n)/d,  v = (1 + (i/m))<sup>-m</sup></p>
+<p>The nominal discount rate is: <input type="number" name="i2" step="0.0001"></p>
+<p>The number of times compounded per payment period: <input type="number" name="m2" step="0.0001"></p>
+<p>The number of terms is: <input type="number" name="n2" step="0.0001"></p>
+<p><button onclick="increasingAnnuityDueMthly()">Calculate!</button></p>
+<p><var id="finalVariable2"></var></p>
+</body>
+</section>
+<script>
+
+function scrapeData(name, isButton){ 
+	// name is a string by which to find element, isButton is boolean for radio button
+	var scrapedData = document.getElementsByName(name);
+	
+	if (isButton){
+		for (i=0; i < scrapedData.length; i++){
+			if (scrapedData[i].checked){
+				return scrapedData[i].value;
+			}
+		}
+	}
+	
+	else {
+		return scrapedData[0].value;
+	}
+}
+
+function increasingAnnuityImmediateMthly(){
+	
+	var i = scrapeData("i", false);
+	var m = scrapeData("m", false);
+	var n = scrapeData("n", false);
+	var goodConditions = [(i != "" && n != "")];
+
+	if (goodConditions[0]) {
+		var [i, n] = [Number(i), Number(n)];
+		var v = (1 + (i / m))**(-1*m);
+		var a_due = (1 - v**(n)) / i;
+		var s_due = (v**(-1*n) - 1) / i;
+		document.getElementById("finalVariable1").innerHTML = "The present value is: " +  (a_due - n*(v**(n))) / i + " and the accumulated value is: " + (s_due - n) / i;
+	}
+	else {
+		document.getElementById("finalVariable1").innerHTML = "Please enter a valid combination of inputs"; 
+	}
+
+}
+
+function increasingAnnuityDueMthly() {
+
+	var i = scrapeData("i2", false);
+	var m = scrapeData("m2", false);
+	var n = scrapeData("n2", false);
+	var goodConditions = [(i != "" && n != "")];
+
+	if (goodConditions[0]) {
+		var [i, n] = [Number(i), Number(n)];
+		var v = (1 + (i / m))**(-1*m);
+		var d = (i) / (1 + (i / m));
+		var a_due = (1 - v**(n)) / i;
+		var s_due = (v**(-1*n) - 1) / i;
+		document.getElementById("finalVariable2").innerHTML = "The present value is: " +  (a_due - n*(v**(n))) / d + " and the accumulated value is: " + (s_due - n) / d;
+	}
+	else {
+		document.getElementById("finalVariable2").innerHTML = "Please enter a valid combination of inputs"; 
+	}
+
+}
+
+</script>
+</html>

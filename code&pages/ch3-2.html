@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>
+Anmol's Interest Calculator
+</title>
+<link href='https://fonts.googleapis.com/css?family=EB Garamond' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+<link rel="stylesheet" href="../styles/chapterstyles.css">
+</head>
+
+<body>
+
+<section id="logo">
+<h1>Anmol's Interest Calculator</h1>
+</section>
+
+<section id="menu">
+<p><a href="mainpage.html">Homepage</a></p>
+<p><a href="ch2.html">Simple Interest and Discount</a></p>
+<p><a href="ch3-1.html">Compound Interest and Discount</a></p>
+<p><a href="ch3-2.html">Compound Interest and Discount Payable M-thly</a></p>
+<p><a href="ch4.html">Force of Interest</a></p>
+<p><a href="ch6.html">Annuity-Immediate/Due</a></p>
+<p><a href="ch7-1.html">Annuity-Immediate/Due Payable M-thly</a></p>
+<p><a href="ch7-2.html">Annuity Payable Continuously</a></p>
+<p><a href="ch8-1.html">Increasing Annuity Immediate/Due</a></p>
+<p><a href="ch8-2.html">Increasing Annuity Immediate/Due Payable M-thly</a></p>
+<p><a href="ch8-3.html">Increasing Annuity Payable Continuously </a></p>
+</section>
+
+<section id="calculatorContent">
+<h2>Nominal Interest Calculator</h2>
+<p>AV<sub>t</sub> = PV<sub>0</sub>(1+i<sup>(m)</sup>&#8260;m)<sup>mt</sup></p>
+<p> The accumulated value is: <input type="number" name="av" step="0.0001"></p>
+<p> The present value is: <input type="number" name="pv" step="0.0001"></p>
+<p> The nominal interest rate is: <input type="number" name="i" step="0.0001"></p>
+<p> The number of times compounded is: <input type="number" name="m" step="0.0001"></p>
+<p> The time is: <input type="number" name="t" step="0.0001"></p>
+
+<p>
+<button onclick="compoundInterest()">Calculate!</button></p>
+
+<p><var id="finalVariable1"></var></p>
+
+
+<h2>Compound Discount Calculator</h2>
+<p>PV<sub>0</sub> = AV<sub>t</sub>(1-d<sup>m</sup>&#8260;m)<sup>mt</sup></p>
+<p> The accumulated value is: <input type="number" name="av2" step="0.0001"></p>
+<p> The present value is: <input type="number" name="pv2" step="0.0001"></p>
+<p> The discount rate is: <input type="number" name="d" step="0.0001"></p>            
+<p> The number of times compounded is: <input type="number" name="m" step="0.0001"></p>    
+<p> The time is: <input type="number" name="t2" step="0.0001"></p>
+</body>
+
+<p>
+<button onclick="compoundDiscount()">Calculate!</button></p>
+
+<p><var id="finalVariable2"></var></p>
+</section>
+
+<script>
+
+function scrapeData(name, isButton){ 
+	// name is a string by which to find element, isButton is boolean for radio button
+	var scrapedData = document.getElementsByName(name);
+	
+	if (isButton){
+		for (i=0; i < scrapedData.length; i++){
+			if (scrapedData[i].checked){
+				return scrapedData[i].value;
+			}
+		}
+	}
+	
+	else {
+		return scrapedData[0].value;
+	}
+}
+
+function elementCount(arr, element){
+	return arr.filter((currentElement)=> currentElement == element).length;
+}
+
+function compoundInterest(){
+
+	var av = scrapeData("av", false);
+	var pv = scrapeData("pv", false);
+	var i = scrapeData("i", false);
+	var m = scrapeData("m", false);
+	var t = scrapeData("t", false);
+	var array = [av, pv, i, m, t];	
+
+	if (elementCount(array, "") != 1){
+		document.getElementById("finalVariable1").innerHTML  = "Please leave exactly one variable blank.";
+	}
+	else if (m == "") {
+		document.getElementById("finalVariable1").innerHTML = "Please don't leave this variable blank.";
+	}
+	else if (av == ""){
+		var [pv, i, t, m] = [Number(pv), Number(i), Number(t), Number(m)];
+		document.getElementById("finalVariable1").innerHTML  =  "The accumulated value is: " + pv*((1 +  i / m)**(m*t));
+	}
+	else if (pv == ""){
+		var [av, i, t, m] = [Number(av), Number(i), Number(t), Number(m)];
+		document.getElementById("finalVariable1").innerHTML  =  "The present value is: " + av / ((1 + i / m)**(m*t));
+	}
+	else if (i == ""){
+		var [av, pv, t, m] = [Number(av), Number(pv), Number(t), Number(m)];
+		document.getElementById("finalVariable1").innerHTML  =  "The interest rate is: " + m*( ( (av / pv)**(1/(m*t)) ) - 1 );
+	}
+	else{
+		var [av, pv, i, m] = [Number(av), Number(pv), Number(i), Number(m)];
+		document.getElementById("finalVariable1").innerHTML  =  "The time is: " + ( Math.log(av / pv) / (m * Math.log(1 + i / m)) );
+	}
+}
+
+function compoundDiscount(){
+
+	var av = scrapeData("av2", false);
+	var pv = scrapeData("pv2", false);
+	var d = scrapeData("d", false);
+	var m = scrapeData("m", false);
+	var t = scrapeData("t2", false);
+	var array = [av, pv, d, m, t];	
+
+	if (elementCount(array, "") != 1){
+		document.getElementById("finalVariable2").innerHTML  = "Please leave exactly one variable blank.";
+	}
+	else if (m == ""){
+		document.getElementById("finalVariable2").innerHTML  =  "Please don't leave this variable blank.";
+	}
+	else if (av == ""){
+		var [pv, d, t, m] = [Number(pv), Number(d), Number(t), Number(m)];
+		document.getElementById("finalVariable2").innerHTML  =  "The accumulated value is: " + pv / ((1 - d / m)**(m*t));
+	}
+	else if (pv == ""){
+		var [av, d, t, m] = [Number(av), Number(d), Number(t), Number(m)];
+		document.getElementById("finalVariable2").innerHTML  =  "The present value is: " + av * ((1 - d / m)**(m*t));
+	}
+	else if (d == ""){
+		var [pv, av, t, m] = [Number(pv), Number(av), Number(t), Number(m)];
+		document.getElementById("finalVariable2").innerHTML  =  "The discount rate is: " + m * ( 1 - ( (pv / av)**(1/(m*t)) ) );
+	}
+	else{
+		var [pv, d, av, m] = [Number(pv), Number(d), Number(av), Number(m)];
+		document.getElementById("finalVariable2").innerHTML  =  "The time is: " + Math.log(pv / av) /m*Math.log(1 - d / m);
+	}
+}
+
+</script>
+
+</html>
