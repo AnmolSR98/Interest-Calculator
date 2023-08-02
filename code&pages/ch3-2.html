@@ -49,7 +49,7 @@ Anmol's Interest Calculator
 <p> The accumulated value is: <input type="number" name="av2" step="0.0001"></p>
 <p> The present value is: <input type="number" name="pv2" step="0.0001"></p>
 <p> The discount rate is: <input type="number" name="d" step="0.0001"></p>            
-<p> The number of times compounded is: <input type="number" name="m" step="0.0001"></p>    
+<p> The number of times compounded is: <input type="number" name="m2" step="0.0001"></p>    
 <p> The time is: <input type="number" name="t2" step="0.0001"></p>
 </body>
 
@@ -120,7 +120,7 @@ function compoundDiscount(){
 	var av = scrapeData("av2", false);
 	var pv = scrapeData("pv2", false);
 	var d = scrapeData("d", false);
-	var m = scrapeData("m", false);
+	var m = scrapeData("m2", false);
 	var t = scrapeData("t2", false);
 	var array = [av, pv, d, m, t];	
 
@@ -132,11 +132,11 @@ function compoundDiscount(){
 	}
 	else if (av == ""){
 		var [pv, d, t, m] = [Number(pv), Number(d), Number(t), Number(m)];
-		document.getElementById("finalVariable2").innerHTML  =  "The accumulated value is: " + pv / ((1 - d / m)**(m*t));
+		document.getElementById("finalVariable2").innerHTML  =  "The accumulated value is: " + pv / ((1 - (d / m))**(m*t));
 	}
 	else if (pv == ""){
 		var [av, d, t, m] = [Number(av), Number(d), Number(t), Number(m)];
-		document.getElementById("finalVariable2").innerHTML  =  "The present value is: " + av * ((1 - d / m)**(m*t));
+		document.getElementById("finalVariable2").innerHTML  =  "The present value is: " + av * ((1 -( d / m))**(m*t));
 	}
 	else if (d == ""){
 		var [pv, av, t, m] = [Number(pv), Number(av), Number(t), Number(m)];
@@ -144,7 +144,7 @@ function compoundDiscount(){
 	}
 	else{
 		var [pv, d, av, m] = [Number(pv), Number(d), Number(av), Number(m)];
-		document.getElementById("finalVariable2").innerHTML  =  "The time is: " + Math.log(pv / av) /m*Math.log(1 - d / m);
+		document.getElementById("finalVariable2").innerHTML  =  "The time is: " + Math.log(pv / av) / (m*Math.log(1 - (d / m)));
 	}
 }
 

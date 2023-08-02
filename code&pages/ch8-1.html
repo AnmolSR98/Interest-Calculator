@@ -74,7 +74,7 @@ function increasingAnnuityImmediate(){
 		var [i, n] = [Number(i), Number(n)];
 		var v = 1 / (1 + i);
 		var a_due = (1 - v**(n)) / i;
-		var s_due = (v**(-1*n) - 1) / i;/
+		var s_due = (v**(-1*n) - 1) / i;
 		document.getElementById("finalVariable1").innerHTML = "The present value is: " +  (a_due - n*(v**(n))) / i + " and the accumulated value is: " + (s_due - n) / i;
 	}
 	else {

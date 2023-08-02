@@ -29,7 +29,7 @@ Anmol's Interest Calculator
 <p><a href="ch8-3.html">Increasing Annuity Payable Continuously </a></p>
 </section>
 
-<section="calculatorContent">
+<section id="calculatorContent">
 <h2>Compound Interest Calculator</h2>
 <p>AV<sub>t</sub> = PV<sub>0</sub>(1+i)<sup>t</sup></p>
 <p> The accumulated value is: <input type="number" name="av" step="0.0001"></p>
@@ -49,13 +49,14 @@ Anmol's Interest Calculator
 <p> The present value is: <input type="number" name="pv2" step="0.0001"></p>
 <p> The discount rate is: <input type="number" name="d" step="0.0001"></p>                
 <p> The time is: <input type="number" name="t2" step="0.0001"></p>
-</body>
 
 <p>
 <button onclick="compoundDiscount()">Calculate!</button></p>
 
 <p><var id="finalVariable2"></var></p>
 </section>
+
+</body>
 
 
 <script>
@@ -131,7 +132,7 @@ function compoundDiscount(){
 	}
 	else if (d == ""){
 		var [pv, av, t] = [Number(pv), Number(av), Number(t)];
-		document.getElementById("finalVariable2").innerHTML  =  "The discount rate is: " + 1 - ( (pv / av)**(1/t) );
+		document.getElementById("finalVariable2").innerHTML  =  "The discount rate is: " + (1 - ( (pv / av)**(1/t) ));
 	}
 	else{
 		var [pv, d, av] = [Number(pv), Number(d), Number(av)];

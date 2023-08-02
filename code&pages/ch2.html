@@ -132,11 +132,11 @@ function simpleDiscount(){
 	}
 	else if (d == ""){
 		var [av, pv, t] = [Number(av), Number(pv), Number(t)];
-		document.getElementById("finalVariable2").innerHTML  =  "The discount rate is: " + (1-(av/pv))*(1/t);
+		document.getElementById("finalVariable2").innerHTML  =  "The discount rate is: " + (1-(pv/av))*(1/t);
 	}
 	else{
 		var [av, pv, d] = [Number(av), Number(pv), Number(d)];
-		document.getElementById("finalVariable2").innerHTML  =  "The time is: " + (1-(av/pv))*(1/d);
+		document.getElementById("finalVariable2").innerHTML  =  "The time is: " + (1-(pv/av))*(1/d);
 	}
 }
 
