@@ -10,28 +10,40 @@ background-color: #464646;
 
 h1 {
 font-family: "Playfair Display";
-font-size:  30px;
-color: #002E63; 
-font-weight: 900;
+display: inline-block;
+padding-left: 5px;
+padding-right: 5px;
+font-size:  35px;
+color: white;
+background-color: #002E63; 
+font-weight: 300;
 }
 
 h2 {
 font-family: "Playfair Display";
-color: #002E63; 
-font-weight: bold;
+display: inline-block;
+color: white;
+padding-left: 3px;
+padding-right: 3px;
+background-color: #002E63; 
+font-weight: 300;
+}
+
+#wide #calculatorContent{
+width: 40%;
 }
 
 #logo {
 float: top;
-width: 25%;
+width: 35%;
 border: 20px;
 border-radius: 25px;
-opacity: 1;
+opacity: 0.9;
 margin: 25px;
 margin-left: 50px;
 }
 
-a {
+#menu a {
 display: block;
 color: #000;
 font-style: normal;
@@ -42,7 +54,7 @@ width: 95%;
 height: 30px;
 }
 
-a:hover {
+#menu a:hover {
 background-color: #002E63; 
 color: white;
 height: 50px;
@@ -66,6 +78,7 @@ border-radius: 25px;
 }
 
 #calculatorContent {
+min-height: 150px;
 float: left;
 background-color: #FAF9F6;
 margin: 10px;
