@@ -31,7 +31,9 @@ Anmol's Interest Calculator
 
 <section id="calculatorContent">
 <h2>Annuity Immediate Payable Mthly</h2>
-<p>a<sub>n</sub>= (1-v<sup>n</sup>)/i, v=(1+i/m)<sup>-m</sup>    s<sub>n</sub>= ((1+i/m)<sup>nm</sup>-1)/i</p>
+<p>a<sub>n</sub>= (1-v<sup>n</sup>)/i<sup>(m)</sup></p>
+<p>s<sub>n</sub>= ((1 + i<sup>(m)</sup>&#8260;m)<sup>nm</sup>-1)/i<sup>(m)</sup></p>
+<p>v=(1 + i<sup>(m)</sup>&#8260;m)<sup>-m</sup></p>
 <p>The accumulated value is: <input type="number" name="av" step="0.0001"></p>
 <p>The present value is: <input type="number" name="pv" step="0.0001"></p>
 <p>The nominal interest rate is: <input type="number" name="i" step="0.0001"></p>
@@ -41,7 +43,9 @@ Anmol's Interest Calculator
 <p><var id="finalVariable1"></var></p>
 
 <h2>Annuity Due Payable Mthly</h2>
-<p>a<sub>n</sub>= (1-v<sup>n</sup>)/d, v=(1+i/m)<sup>-m</sup>    s<sub>n</sub>= ((1+i)<sup>nm</sup>-1)/d</p>
+<p>a<sub>n</sub>= (1-v<sup>n</sup>)/d<sup>(m)</sup></p>
+<p>s<sub>n</sub>= ((1 + i<sup>(m)</sup>&#8260;m)<sup>nm</sup>-1)/d<sup>(m)</sup></p>
+<p>v=(1 + i<sup>(m)</sup>&#8260;m)<sup>-m</sup></p>
 <p>The accumulated value is: <input type="number" name="av2" step="0.0001"></p>
 <p>The present value is: <input type="number" name="pv2" step="0.0001"></p>
 <p>The nominal discount rate is: <input type="number" name="i2" step="0.0001"></p>
@@ -51,6 +55,9 @@ Anmol's Interest Calculator
 <p><var id="finalVariable2"></var></p>
 </body>
 </section>
+
+<footer>If any issues are noticed with the website, please feel free to email me at anmolratolcoding@gmail.com.</footer>
+
 <script>
 
 function scrapeData(name, isButton){ 

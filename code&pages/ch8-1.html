@@ -31,20 +31,25 @@ Anmol's Interest Calculator
 
 <section id="calculatorContent">
 <h2> Increasing Annuity Immediate</h2>
-<p>(Ia)<sub>n</sub>= (a_due<sub>n</sub>-nv<sup>n</sup>)/i, 	(Is)<sub>n</sub>= (s_due<sub>n</sub>-n)/i</p>
+<p>(Ia)<sub>n</sub>= (a<sup>due</sup><sub>n</sub>-nv<sup>n</sup>)/i</p>
+<p>(Is)<sub>n</sub>= (s<sup>due</sup><sub>n</sub>-n)/i</p>
 <p>The interest rate is: <input type="number" name="i" step="0.0001"></p>
 <p>The number of terms is: <input type="number" name="n" step="0.0001"></p>
 <p><button onclick="increasingAnnuityImmediate()">Calculate!</button></p>
 <p><var id="finalVariable1"></var></p>
 
 <h2>Increasing Annuity Due</h2>
-<p>(Ia)<sub>n</sub>= (a_due<sub>n</sub>-nv<sup>n</sup>)/d, 	(Is)<sub>n</sub>= (s_due<sub>n</sub>-n)/d</p>
+<p>(Ia)<sub>n</sub>= (a<sup>due</sup><sub>n</sub>-nv<sup>n</sup>)/d</p>
+<p>(Is)<sub>n</sub>= (s<sup>due</sup><sub>n</sub>-n)/d</p>
 <p>The discount rate is: <input type="number" name="i2" step="0.0001"></p>
 <p>The number of terms is: <input type="number" name="n2" step="0.0001"></p>
 <p><button onclick="increasingAnnuityDue()">Calculate!</button></p>
 <p><var id="finalVariable2"></var></p>
 </body>
 </section>
+
+<footer>If any issues are noticed with the website, please feel free to email me at anmolratolcoding@gmail.com.</footer>
+
 <script>
 
 function scrapeData(name, isButton){ 
