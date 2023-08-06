@@ -30,8 +30,9 @@ opacity: 0.9;
 }
 
 footer {
-float: right;
-margin-top: 250px;
+position: absolute;
+bottom: 0px;
+right: 0px;
 margin-right: 10px;
 margin-bottom: 10px;
 font-family: "Playfair Display";
